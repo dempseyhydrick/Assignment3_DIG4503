@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Scribble Maps : Interactivity Demo</title>
+    <script src="//scribblemaps.com/api/js"></script>
+
+     <script>
+        var loadmap = function() {
+            var sm = new ScribbleMapViewer(document.getElementById('ScribbleMap'));
+            sm.ui.setTool(["edit", "drag", "eraser", "fill",
+                "scribble", "line", "rectangle", "circle", "polygon",
+                "label", "marker"]);
+            sm.ui.setAvailableTools(["edit", "drag", "eraser", "fill",
+                "scribble", "line", "rectangle", "circle", "polygon",
+                "label", "marker"]);
+
+
+
+            sm.map.addListener(scribblemaps.MapEvent.OVERLAY_ADDED, function(event) {
+              var overlay = event.data;
+              var coords = overlay.getCoords();
+              console.log(coords);
+            });
+
+
+
+
+          /*  sm.draw.marker([43.761539, -79.411079])
+              .mousedown(function() {
+                var currentcoords = this.getCoords();
+                console.log(currentcoords[0]);
+              }) */
+
+            /* Something to make the marker clickable to when you click it activates the second
+               API and then it pops up with a facebook video/post from that providence or whatever
+               they call it in Canada
+
+               Scribble youtube channel
+                  >getting started with scribble maps
+
+               */
+        }
+    </script>
+    <script src="//scribblemaps.com/api/js/?callback=loadmap" async></script>
+</head>
+
+<body>
+    <div id="ScribbleMap" style="width: 730px; height: 500px"></div>
+</body>
+</html>
